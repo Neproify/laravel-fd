@@ -15,6 +15,12 @@ Auth::routes();
 
 Route::get('/', 'IndexController@index');
 
+Route::get('/vehicles', 'VehiclesController@index');
+Route::get('/vehicles/{id}', 'VehiclesController@show');
+Route::post('/vehicles/{id}/departure/add', 'VehiclesController@addDeparture');
+Route::post('/vehicles/{id}/departures/get', 'VehiclesController@getDepartures');
+Route::get('/vehicles/{id}/departures/{from}/{to}', 'VehiclesController@showDepartures');
+
 Route::get('/admin', 'Admin\DashboardController@index');
 Route::get('/admin/users', 'Admin\UsersController@index');
 Route::get('/admin/users/update/{id}', 'Admin\UsersController@updateForm');
