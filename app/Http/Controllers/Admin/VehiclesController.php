@@ -44,6 +44,12 @@ class VehiclesController extends Controller
         $vehicle = Vehicle::findOrFail($request->input('vehicle'));
 
         $vehicle->name = $request->input('name');
+
+        $vehicle->combustion = $request->input('combustion');
+        $vehicle->fuel = $request->input('fuel');
+        $vehicle->milage = $request->input('milage');
+        $vehicle->insurance = $request->input('insurance');
+        $vehicle->inspection = $request->input('inspection');
         
         if(is_null($request->input('users')))
         {
