@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Role;
+use Redirect;
 
 class RolesController extends Controller
 {
@@ -22,25 +23,41 @@ class RolesController extends Controller
         return view('admin.roles.index', ['roles' => $roles]);
     }
 
-    /*public function updateForm($id)
+    public function create()
     {
-        $user = User::findOrFail($id);
-        $roles = Role::all();
-        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
-    }*/
-
-    /*public function update(Request $request)
-    {
-        $this->validate($request, [
-            'role' => 'required',
+        $role = Role::create([
+            'name' => 'Nowa rola'
         ]);
 
-        $user = User::findOrFail($request->input('user'));
+        return Redirect::to(url('/admin/roles/update', ['id' => $role->id]));
+    }
+
+    public function updateForm($id)
+    {
+        $role = Role::findOrFail($id);
+        return view('admin.roles.edit', ['role' => $role]);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:3|max:64'
+        ]);
+
         $role = Role::findOrFail($request->input('role'));
 
-        $user->role_id = $role->id;
-        $user->save();
+        $role->admin = $request->input('admin');
+        $role->announcments = $request->input('announcments');
+        $role->training = $request->input('training');
+        $role->members = $request->input('members');
+        $role->statute = $request->input('statute');
+        $role->equipment = $request->input('equipment');
+        $role->vehicles = $request->input('vehicles');
+        $role->fuel = $request->input('fuel');
+        $role->conclusions = $request->input('conclusions');
 
-        return redirect('/admin/users');
-    }*/
+        $role->save();
+
+        return redirect('/admin/roles');
+    }
 }

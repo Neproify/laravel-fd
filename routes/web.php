@@ -21,3 +21,6 @@ Route::get('/admin/users/update/{id}', 'Admin\UsersController@updateForm');
 Route::post('/admin/users/update', 'Admin\UsersController@update');
 
 Route::get('/admin/roles', 'Admin\RolesController@index');
+Route::get('/admin/roles/create', 'Admin\RolesController@create');
+Route::get('/admin/roles/update/{id}', 'Admin\RolesController@updateForm');
+Route::post('/admin/roles/update', 'Admin\RolesController@update');
