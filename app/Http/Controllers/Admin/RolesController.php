@@ -46,6 +46,8 @@ class RolesController extends Controller
 
         $role = Role::findOrFail($request->input('role'));
 
+        $role->name = $request->input('name');
+
         $role->admin = $request->input('admin');
         $role->announcments = $request->input('announcments');
         $role->training = $request->input('training');

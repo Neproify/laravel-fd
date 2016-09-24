@@ -44,7 +44,15 @@ class VehiclesController extends Controller
         $vehicle = Vehicle::findOrFail($request->input('vehicle'));
 
         $vehicle->name = $request->input('name');
-        $vehicle->users()->sync($request->input('users'));
+        
+        if(is_null($request->input('users')))
+        {
+            $vehicle->users()->sync([]);
+        }  
+        else
+        {
+            $vehicle->users()->sync($request->input('users'));
+        }
 
         $vehicle->save();
 
