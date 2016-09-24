@@ -24,3 +24,8 @@ Route::get('/admin/roles', 'Admin\RolesController@index');
 Route::get('/admin/roles/create', 'Admin\RolesController@create');
 Route::get('/admin/roles/update/{id}', 'Admin\RolesController@updateForm');
 Route::post('/admin/roles/update', 'Admin\RolesController@update');
+
+Route::get('/admin/vehicles', 'Admin\VehiclesController@index');
+Route::get('/admin/vehicles/create', 'Admin\VehiclesController@create');
+Route::get('/admin/vehicles/update/{id}', 'Admin\VehiclesController@updateForm');
+Route::post('/admin/vehicles/update', 'Admin\VehiclesController@update');

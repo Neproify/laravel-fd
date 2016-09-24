@@ -19,7 +19,7 @@ class Admin
         if(!Auth::Check())
             return redirect('/');
 
-        if(Auth::User()->role->admin < 3)
+        if(!Auth::User()->isPermittedEvenOrMore('admin', 1))
             return redirect('/');
 
         return $next($request);

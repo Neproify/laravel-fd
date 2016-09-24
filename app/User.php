@@ -28,15 +28,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo('App\Role');
+        return $this->belongsToMany('App\Role');
     }
 
-    public function isAdmin()
+    public function isPermittedEvenOrMore($name, $permission)
     {
-        if($this->role->admin > 0)
-            return true;
+        foreach($this->roles as $role)
+        {
+            switch($name)
+            {
+                case "admin":
+                    if($role->admin >= $permission)
+                    return true;
+                    break;
+            }
+        }
         return false;
     }
 }

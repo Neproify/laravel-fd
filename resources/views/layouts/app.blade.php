@@ -43,7 +43,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if(!Auth::guest())
-                        @if(Auth::User()->isAdmin())
+                        @if(Auth::User()->isPermittedEvenOrMore('admin', 1))
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Panel administracyjny <span class="caret"></span>
@@ -53,6 +53,7 @@
                                     <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                                     <li><a href="{{ url('/admin/users') }}">Użytkownicy</a></li>
                                     <li><a href="{{ url('/admin/roles') }}">Role</a></li>
+                                    <li><a href="{{ url('/admin/vehicles') }}">Pojazdy</a></li>
                                 </ul>
                             </li>
                         @endif

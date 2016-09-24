@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Edycja użytkownika <a href="$user->getUrl()">{{ $user->name }}</a>
+                    Edycja użytkownika {{ $user->name }}
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/users/update') }}">
@@ -15,15 +15,15 @@
                         <input name="user" type="hidden" value="{{ $user->id }}">
 
                         <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
-                            <label for="role" class="col-md-4 control-label">Role</label>
+                            <label for="roles" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
                                 <!--<input id="role" type="text" class="form-control" name="name" value="{{ $user->name }}" autofocus>-->
 
                                 <div class="form-group">
-                                    <select class="form-control" id="role" name="role">
+                                    <select multiple class="form-control" id="roles" name="roles[]">
                                         @foreach($roles as $role)
-                                            <option value="{{ $role->id }}"@if($user->role == $role) selected @endif>{{ $role->name }}</option>
+                                            <option value="{{ $role->id }}"@if($user->roles->contains($role)) selected @endif>{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -33,13 +33,12 @@ class UsersController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'role' => 'required',
+            'roles' => 'required',
         ]);
 
         $user = User::findOrFail($request->input('user'));
-        $role = Role::findOrFail($request->input('role'));
 
-        $user->role_id = $role->id;
+        $user->roles()->sync($request->input('roles'));
         $user->save();
 
         return redirect('/admin/users');
