@@ -5,6 +5,7 @@
         </div>
         <div class="col-md-2">
             <a href="{{ url('/admin/roles/update', [$role->id]) }}">Edytuj</a>
+            <a href="{{ url('/admin/roles/delete', [$role->id]) }}">Usuń</a>
         </div>
     </div>
 </div>

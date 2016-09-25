@@ -5,6 +5,7 @@
         </div>
         <div class="col-md-2">
             <a href="{{ url('/admin/users/update', [$user->id]) }}">Edytuj</a>
+            <a href="{{ url('/admin/users/delete', [$user->id]) }}">Usuń</a>
         </div>
     </div>
 </div>

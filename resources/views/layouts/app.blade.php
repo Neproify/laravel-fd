@@ -43,6 +43,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if(!Auth::guest())
+                        <li><a href="{{ url('/announcments') }}">Tablica ogłoszeń</a></li>
                         <li><a href="{{ url('/vehicles') }}">Pojazdy</a></li>
                         @if(Auth::User()->isPermittedEvenOrMore('admin', 1))
                             <li class="dropdown">

@@ -62,4 +62,12 @@ class RolesController extends Controller
 
         return redirect('/admin/roles');
     }
+
+    public function delete($id)
+    {
+        $role = Role::findOrFail($id);
+        $role->delete();
+        
+        return redirect('/admin/roles');
+    }
 }

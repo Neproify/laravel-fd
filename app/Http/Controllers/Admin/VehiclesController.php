@@ -64,4 +64,12 @@ class VehiclesController extends Controller
 
         return redirect('/admin/vehicles');
     }
+
+    public function delete($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->delete();
+        
+        return redirect('/admin/vehicles');
+    }
 }
