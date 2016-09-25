@@ -20,6 +20,7 @@ Route::get('/vehicles/{id}', 'VehiclesController@show');
 Route::post('/vehicles/{id}/departure/add', 'VehiclesController@addDeparture');
 Route::post('/vehicles/{id}/departures/get', 'VehiclesController@getDepartures');
 Route::get('/vehicles/{id}/departures/{from}/{to}', 'VehiclesController@showDepartures');
+Route::post('/vehicles/{id}/refueling/add', 'VehiclesController@addRefueling');
 
 Route::get('/announcments', 'AnnouncmentsController@index');
 Route::get('/announcments/delete/{id}', 'AnnouncmentsController@delete');

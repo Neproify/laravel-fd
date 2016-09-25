@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Auth;
 use App\Vehicle;
 use App\VehicleDeparture;
+use App\VehicleRefueling;
 use Carbon\Carbon;
 use View;
 use PDF;
@@ -86,8 +87,33 @@ class VehiclesController extends Controller
         $departures = VehicleDeparture::where('vehicle_id', $id)
             ->where('date', '>=', Carbon::createFromFormat('d-m-Y', $from)->subDay())
             ->where('date', '<=', Carbon::createFromFormat('d-m-Y', $to)->addDay())->get();
+
+        $refuelings = VehicleRefueling::where('vehicle_id', $id)
+            ->where('date', '>=', Carbon::createFromFormat('d-m-Y', $from)->subDay())
+            ->where('date', '<=', Carbon::createFromFormat('d-m-Y', $to)->addDay())->get();
         //return View::make('vehicles.departures', ['departures' => $departures])->render();
-        $pdf = PDF::loadView('vehicles.departures', ['departures' => $departures]);
+        $pdf = PDF::loadView('vehicles.departures', ['departures' => $departures, 'refuelings' => $refuelings]);
         return $pdf->download('Karta pojazdu '. $from .'-'. $to .'.pdf');
+    }
+
+    public function addRefueling(Request $request, $id)
+    {
+        if(!Auth::User()->isPermittedEvenOrMore('vehicles', 2))
+            return redirect('/');
+
+        $vehicle = Vehicle::findOrFail($id);
+
+        if(!$vehicle->users->contains(Auth::User()))
+            return redirect('/vehicles');
+
+        $refueling = VehicleRefueling::create([
+            'vehicle_id' => $vehicle->id,
+            'date' => Carbon::createFromFormat('d-m-Y', $request->input('date')),
+            'milage' => $request->input('milage'),
+            'type' => $request->input('typeOfFuel'),
+            'count' => $request->input('countOfFuel')
+        ]);
+
+        return redirect(url('/vehicles', [$id]));
     }
 }

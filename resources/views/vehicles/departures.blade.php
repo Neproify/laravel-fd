@@ -55,3 +55,22 @@
         </tr>
     @endforeach
 </table>
+<div class="page-break"></div>
+<table style="width:100%">
+    <tr>
+        <th>Data</th>
+        <th>Przy przebiegu</th>
+        <th>Typ paliwa</th>
+        <th>Ilość paliwa</th>
+        <th>Podpis</th>
+    </tr>
+    @foreach($refuelings as $refueling)
+        <tr>
+            <td>{{ $refueling->date }}</td>
+            <td>{{ $refueling->milage }}</td>
+            <td>{{ $refueling->type }}</td>
+            <td>{{ $refueling->count }}</td>
+            <td></td>
+        </tr>
+    @endforeach
+</table>

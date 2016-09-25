@@ -68,16 +68,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="fromPlace" class="col-md-4 control-label">Skąd</label>
+                            <label for="typeOfFuel" class="col-md-4 control-label">Skąd</label>
                             <div class="col-md-6">
-                                <input id="fromPlace" type="text" class="form-control" name="fromPlace" value="" autofocus>
+                                <input id="typeOfFuel" type="text" class="form-control" name="typeOfFuel" value="" autofocus>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="toPlace" class="col-md-4 control-label">Do</label>
+                            <label for="countOfFuel" class="col-md-4 control-label">Do</label>
                             <div class="col-md-6">
-                                <input id="toPlace" type="text" class="form-control" name="toPlace" value="" autofocus>
+                                <input id="countOfFuel" type="text" class="form-control" name="countOfFuel" value="" autofocus>
                             </div>
                         </div>
 
@@ -134,6 +134,57 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Dodaj wyjazd
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @endif
+            @if(Auth::User()->isPermittedEvenOrMore('vehicles', 2))
+            <div class="panel panel-default">
+                <div class="panel-heading">Dodaj tankowanie</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/vehicles', [$vehicle->id, 'refueling', 'add']) }}">
+                        {{ csrf_field() }}
+
+                        <input name="vehicle" type="hidden" value="{{ $vehicle->id }}">
+
+                        <div class="form-group">
+                            <label for="date" class="col-md-4 control-label">Data(DD-MM-RRRR)</label>
+                            <div class="col-md-6">
+                                <input id="date" type="text" class="form-control" name="date" value="" autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="milage" class="col-md-4 control-label">Stan licznika</label>
+                            <div class="col-md-6">
+                                <input id="milage" type="text" class="form-control" name="milage" value="" autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="typeOfFuel" class="col-md-4 control-label">Rodzaj paliwa</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="typeOfFuel" name="typeOfFuel">
+                                    <option value="Benzyna">Benzyna</option>
+                                    <option value="Diesel">Diesel</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="countOfFuel" class="col-md-4 control-label">Ilość paliwa</label>
+                            <div class="col-md-6">
+                                <input id="countOfFuel" type="text" class="form-control" name="countOfFuel" value="" autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Dodaj tankowanie
                                 </button>
                             </div>
                         </div>
