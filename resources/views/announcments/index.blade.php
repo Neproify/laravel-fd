@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @if(Auth::User()->isPermittedEvenOrMore('announcments', 2))
             <div class="panel panel-default">
                 <div class="panel-heading">Dodaj ogłoszenie</div>
                 <div class="panel-body">
@@ -33,13 +34,16 @@
                     </form>
                 </div>
             </div>
+            @endif
             @foreach($announcments as $announcment)
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{ $announcment->title }}
+                        @if(Auth::User()->isPermittedEvenOrMore('announcments', 3))
                         <div class="pull-right">
                             <a href="{{ url('announcments/delete', $announcment->id) }}">Usuń ogłoszenie</a>
                         </div>
+                        @endif
                     </div>
                     <div class="panel-body">
                         {{ $announcment->content }}

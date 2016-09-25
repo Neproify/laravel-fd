@@ -10,14 +10,25 @@ use Auth;
 
 class AnnouncmentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+        if(!Auth::User()->isPermittedEvenOrMore('announcments', 1))
+            return redirect('/');
+
         $announcments = Announcment::all();
         return view('announcments.index', ['announcments' => $announcments]);
     }
 
     public function create(Request $request)
     {
+        if(!Auth::User()->isPermittedEvenOrMore('announcments', 2))
+            return redirect('/');
+
         Announcment::create([
             'user_id' => Auth::User()->id,
             'title' => $request->input('title'),
@@ -28,6 +39,9 @@ class AnnouncmentsController extends Controller
 
     public function delete($id)
     {
+        if(!Auth::User()->isPermittedEvenOrMore('announcments', 3))
+            return redirect('/');
+
         $announcment = Announcment::findOrFail($id);
         $announcment->delete();
         return redirect('/announcments');

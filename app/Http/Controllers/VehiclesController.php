@@ -21,19 +21,34 @@ class VehiclesController extends Controller
 
     public function index()
     {
+        if(!Auth::User()->isPermittedEvenOrMore('vehicles', 1))
+            return redirect('/');
+        
         $vehicles = Auth::User()->vehicles;
         return view('vehicles.index', ['vehicles' => $vehicles]);
     }
 
     public function show($id)
     {
+        if(!Auth::User()->isPermittedEvenOrMore('vehicles', 1))
+            return redirect('/');
+
         $vehicle = Vehicle::findOrFail($id);
+        if(!$vehicle->users->contains(Auth::User()))
+            return redirect('/vehicles');
+
         return view('vehicles.vehicle', ['vehicle' => $vehicle]);
     }
 
     public function addDeparture(Request $request, $id)
     {
+        if(!Auth::User()->isPermittedEvenOrMore('vehicles', 2))
+            return redirect('/');
+
         $vehicle = Vehicle::findOrFail($id);
+
+        if(!$vehicle->users->contains(Auth::User()))
+            return redirect('/vehicles');
 
         $departure = VehicleDeparture::create([
             'vehicle_id' => $vehicle->id,
@@ -60,6 +75,14 @@ class VehiclesController extends Controller
 
     public function showDepartures($id, $from, $to)
     {
+        if(!Auth::User()->isPermittedEvenOrMore('vehicles', 1))
+            return redirect('/');
+            
+        $vehicle = Vehicle::findOrFail($id);
+        
+        if(!$vehicle->users->contains(Auth::User()))
+            return redirect('/vehicles');
+
         $departures = VehicleDeparture::where('vehicle_id', $id)
             ->where('date', '>=', Carbon::createFromFormat('d-m-Y', $from)->subDay())
             ->where('date', '<=', Carbon::createFromFormat('d-m-Y', $to)->addDay())->get();

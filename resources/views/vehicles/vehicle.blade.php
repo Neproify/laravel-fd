@@ -44,6 +44,7 @@
                     </form>
                 </div>
             </div>
+            @if(Auth::User()->isPermittedEvenOrMore('vehicles', 2))
             <div class="panel panel-default">
                 <div class="panel-heading">Dodaj wyjazd</div>
                 <div class="panel-body">
@@ -139,6 +140,7 @@
                     </form>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

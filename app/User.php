@@ -44,9 +44,17 @@ class User extends Authenticatable
         {
             switch($name)
             {
-                case "admin":
+                case 'admin':
                     if($role->admin >= $permission)
-                    return true;
+                        return true;
+                    break;
+                case 'announcments':
+                    if($role->announcments >= $permission)
+                        return true;
+                    break;
+                case 'vehicles':
+                    if($role->vehicles >= $permission)
+                        return true;
                     break;
             }
         }
