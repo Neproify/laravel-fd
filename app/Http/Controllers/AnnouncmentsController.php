@@ -29,6 +29,11 @@ class AnnouncmentsController extends Controller
         if(!Auth::User()->isPermittedEvenOrMore('announcments', 2))
             return redirect('/');
 
+        $this->validate($request, [
+            'title' => 'required|string|min:3|max:128',
+            'content' => 'required|string|min:8|max:2048'
+        ]);
+
         Announcment::create([
             'user_id' => Auth::User()->id,
             'title' => $request->input('title'),

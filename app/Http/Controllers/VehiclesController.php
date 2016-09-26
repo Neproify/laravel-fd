@@ -46,6 +46,20 @@ class VehiclesController extends Controller
         if(!Auth::User()->isPermittedEvenOrMore('vehicles', 2))
             return redirect('/');
 
+        $this->validate($request, [
+            'date' => 'required|date',
+            'reason' => 'required|string|min:8|max:128',
+            'fromPlace' => 'required|string|min:3|max:64',
+            'toPlace' => 'required|string|min:3|max:64',
+            'supervisorName' => 'required|string|min:2|max:64',
+            'driverName' => 'required|string|min:2|max:64',
+            'departureTime' => 'required|date_format:H:i',
+            'returnTime' => 'required|date_format:H:i',
+            'beforeMilage' => 'required|integer',
+            'afterMilage' => 'required|integer',
+            'stopTime' => 'required|integer'
+        ]);
+
         $vehicle = Vehicle::findOrFail($id);
 
         if(!$vehicle->users->contains(Auth::User()))
@@ -71,6 +85,11 @@ class VehiclesController extends Controller
 
     public function getDepartures(Request $request, $id)
     {
+        $this->validate($request, [
+            'dateFrom' => 'required|date',
+            'dateTo' => 'required|date'
+        ]);
+
         return redirect(url('/vehicles', [$id, 'departures', $request->input('dateFrom'), $request->input('dateTo')]));
     }
 
@@ -100,6 +119,12 @@ class VehiclesController extends Controller
     {
         if(!Auth::User()->isPermittedEvenOrMore('vehicles', 2))
             return redirect('/');
+
+        $this->validate($request, [
+            'date' => 'required|date',
+            'milage' => 'required|integer',
+            'countOfFuel' => 'required|numeric'
+        ]);
 
         $vehicle = Vehicle::findOrFail($id);
 

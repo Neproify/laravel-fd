@@ -23,14 +23,26 @@
                         <div class="form-group">
                             <label for="dateFrom" class="col-md-4 control-label">Od(DD-MM-RRRR)</label>
                             <div class="col-md-6">
-                                <input id="dateFrom" type="text" class="form-control" name="dateFrom" value="" autofocus>
+                                <input id="dateFrom" type="text" class="form-control" name="dateFrom" value="{{ old('dateFrom') }}" autofocus>
+
+                                @if ($errors->has('dateFrom'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dateFrom') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="dateTo" class="col-md-4 control-label">Do(DD-MM-RRRR)</label>
                             <div class="col-md-6">
-                                <input id="dateTo" type="text" class="form-control" name="dateTo" value="" autofocus>
+                                <input id="dateTo" type="text" class="form-control" name="dateTo" value="{{ old('dateTo') }}" autofocus>
+                            
+                                @if ($errors->has('dateTo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dateTo') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -56,77 +68,143 @@
                         <div class="form-group">
                             <label for="date" class="col-md-4 control-label">Data(DD-MM-RRRR)</label>
                             <div class="col-md-6">
-                                <input id="date" type="text" class="form-control" name="date" value="" autofocus>
+                                <input id="date" type="text" class="form-control" name="date" value="{{ old('date') }}" autofocus>
+
+                                @if ($errors->has('date'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="reason" class="col-md-4 control-label">Cel wyjazdu</label>
                             <div class="col-md-6">
-                                <input id="reason" type="text" class="form-control" name="reason" value="" autofocus>
+                                <input id="reason" type="text" class="form-control" name="reason" value="{{ old('reason') }}" autofocus>
+
+                                @if ($errors->has('reason'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('reason') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="fromPlace" class="col-md-4 control-label">Skąd</label>
                             <div class="col-md-6">
-                                <input id="fromPlace" type="text" class="form-control" name="fromPlace" value="" autofocus>
+                                <input id="fromPlace" type="text" class="form-control" name="fromPlace" value="{{ old('fromPlace')}}" autofocus>
+                            
+                                @if ($errors->has('fromPlace'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('fromPlace') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="toPlace" class="col-md-4 control-label">Do</label>
                             <div class="col-md-6">
-                                <input id="toPlace" type="text" class="form-control" name="toPlace" value="" autofocus>
+                                <input id="toPlace" type="text" class="form-control" name="toPlace" value="{{ old('toPlace') }}" autofocus>
+
+                                @if ($errors->has('toPlace'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('toPlace') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="supervisorName" class="col-md-4 control-label">Nazwisko dowódcy</label>
                             <div class="col-md-6">
-                                <input id="supervisorName" type="text" class="form-control" name="supervisorName" value="" autofocus>
+                                <input id="supervisorName" type="text" class="form-control" name="supervisorName" value="{{ old('supervisorName') }}" autofocus>
+                            
+                                @if ($errors->has('supervisorName'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('supervisorName') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="driverName" class="col-md-4 control-label">Kierowca</label>
                             <div class="col-md-6">
-                                <input id="driverName" type="text" class="form-control" name="driverName" value="" autofocus>
+                                <input id="driverName" type="text" class="form-control" name="driverName" value="{{ old('driverName') }}" autofocus>
+
+                                @if ($errors->has('driverName'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('driverName') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="departureTime" class="col-md-4 control-label">Godzina wyjazdu</label>
                             <div class="col-md-6">
-                                <input id="departureTime" type="text" class="form-control" name="departureTime" value="" autofocus>
+                                <input id="departureTime" type="text" class="form-control" name="departureTime" value="{{ old('departureTime') }}" autofocus>
+                            
+                                @if ($errors->has('departureTime'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('departureTime') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="returnTime" class="col-md-4 control-label">Godzina powrotu</label>
                             <div class="col-md-6">
-                                <input id="returnTime" type="text" class="form-control" name="returnTime" value="" autofocus>
+                                <input id="returnTime" type="text" class="form-control" name="returnTime" value="{{ old('returnTime') }}" autofocus>
+
+                                @if ($errors->has('returnTime'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('returnTime') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="beforeMilage" class="col-md-4 control-label">Przebieg przed wyjazdem</label>
                             <div class="col-md-6">
-                                <input id="beforeMilage" type="text" class="form-control" name="beforeMilage" value="" autofocus>
+                                <input id="beforeMilage" type="text" class="form-control" name="beforeMilage" value="{{ old('beforeMilage') }}" autofocus>
+                            
+                                @if ($errors->has('beforeMilage'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('beforeMilage') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="afterMilage" class="col-md-4 control-label">Przebieg po wyjeździe</label>
                             <div class="col-md-6">
-                                <input id="afterMilage" type="text" class="form-control" name="afterMilage" value="" autofocus>
+                                <input id="afterMilage" type="text" class="form-control" name="afterMilage" value="{{ old('afterMilage') }}" autofocus>
+                            
+                                @if ($errors->has('afterMilage'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('afterMilage') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="stopTime" class="col-md-4 control-label">Czas na postoju</label>
                             <div class="col-md-6">
-                                <input id="stopTime" type="text" class="form-control" name="stopTime" value="" autofocus>
+                                <input id="stopTime" type="text" class="form-control" name="stopTime" value="{{ old('stopTime') }}" autofocus>
+
+                                @if ($errors->has('stopTime'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('stopTime') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -153,14 +231,26 @@
                         <div class="form-group">
                             <label for="date" class="col-md-4 control-label">Data(DD-MM-RRRR)</label>
                             <div class="col-md-6">
-                                <input id="date" type="text" class="form-control" name="date" value="" autofocus>
+                                <input id="date" type="text" class="form-control" name="date" value="{{ old('date') }}" autofocus>
+                            
+                                @if ($errors->has('date'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="milage" class="col-md-4 control-label">Stan licznika</label>
                             <div class="col-md-6">
-                                <input id="milage" type="text" class="form-control" name="milage" value="" autofocus>
+                                <input id="milage" type="text" class="form-control" name="milage" value="{{ old('milage') }}" autofocus>
+                            
+                                @if ($errors->has('milage'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('milage') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -177,7 +267,13 @@
                         <div class="form-group">
                             <label for="countOfFuel" class="col-md-4 control-label">Ilość paliwa</label>
                             <div class="col-md-6">
-                                <input id="countOfFuel" type="text" class="form-control" name="countOfFuel" value="" autofocus>
+                                <input id="countOfFuel" type="text" class="form-control" name="countOfFuel" value="{{ old('countOfFuel') }}" autofocus>
+                            
+                                @if ($errors->has('countOfFuel'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('countOfFuel') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

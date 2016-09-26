@@ -13,14 +13,26 @@
                         <div class="form-group">
                             <label for="title" class="col-md-4 control-label">Tytuł</label>
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="title" value="" autofocus>
+                                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" autofocus>
+                            
+                                @if ($errors->has('title'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="content" class="col-md-4 control-label">Zawartość</label>
                             <div class="col-md-6">
-                                <input id="content" type="text" class="form-control" name="content" value="" autofocus>
+                                <input id="content" type="text" class="form-control" name="content" value="{{ old('content') }}" autofocus>
+                            
+                                @if ($errors->has('content'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('content') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

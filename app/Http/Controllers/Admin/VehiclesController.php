@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Vehicle;
 use App\User;
 use Redirect;
+use Carbon\Carbon;
 
 class VehiclesController extends Controller
 {
@@ -36,11 +37,23 @@ class VehiclesController extends Controller
         $vehicle = Vehicle::findOrFail($id);
         $users = User::all();
 
+        $vehicle->insurance = Carbon::createFromFormat('Y-m-d', $vehicle->insurance);
+        $vehicle->inspection = Carbon::createFromFormat('Y-m-d', $vehicle->inspection);
+
         return view('admin.vehicles.edit', ['vehicle' => $vehicle, 'users' => $users]);
     }
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|string|min:3|max:64',
+            'combustion' => 'required|numeric',
+            'fuel' => 'required|numeric',
+            'milage' => 'required|integer',
+            'insurance' => 'required|date',
+            'inspection' => 'required|date'
+        ]);
+
         $vehicle = Vehicle::findOrFail($request->input('vehicle'));
 
         $vehicle->name = $request->input('name');
@@ -48,8 +61,8 @@ class VehiclesController extends Controller
         $vehicle->combustion = $request->input('combustion');
         $vehicle->fuel = $request->input('fuel');
         $vehicle->milage = $request->input('milage');
-        $vehicle->insurance = $request->input('insurance');
-        $vehicle->inspection = $request->input('inspection');
+        $vehicle->insurance = Carbon::createFromFormat('d-m-Y', $request->input('insurance'));
+        $vehicle->inspection = Carbon::createFromFormat('d-m-Y', $request->input('inspection'));
         
         if(is_null($request->input('users')))
         {
