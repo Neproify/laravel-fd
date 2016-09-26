@@ -68,16 +68,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="typeOfFuel" class="col-md-4 control-label">Skąd</label>
+                            <label for="fromPlace" class="col-md-4 control-label">Skąd</label>
                             <div class="col-md-6">
-                                <input id="typeOfFuel" type="text" class="form-control" name="typeOfFuel" value="" autofocus>
+                                <input id="fromPlace" type="text" class="form-control" name="fromPlace" value="" autofocus>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="countOfFuel" class="col-md-4 control-label">Do</label>
+                            <label for="toPlace" class="col-md-4 control-label">Do</label>
                             <div class="col-md-6">
-                                <input id="countOfFuel" type="text" class="form-control" name="countOfFuel" value="" autofocus>
+                                <input id="toPlace" type="text" class="form-control" name="toPlace" value="" autofocus>
                             </div>
                         </div>
 
