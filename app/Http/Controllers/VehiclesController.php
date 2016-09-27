@@ -80,6 +80,15 @@ class VehiclesController extends Controller
             'stopTime' => $request->input('stopTime')
         ]);
 
+        if($vehicle->milage < $request->input('afterMilage'))
+        {
+            $vehicle->milage = $request->input('afterMilage');
+        }
+
+        $vehicle->fuel -= $request->input('stopTime') * 0.15;
+        $vehicle->fuel -= ($request->input('afterMilage') - $request->input('beforeMilage')) * ($vehicle->combustion / 100);
+        $vehicle->save();
+
         return redirect(url('/vehicles', [$id]));
     }
 
@@ -138,6 +147,9 @@ class VehiclesController extends Controller
             'type' => $request->input('typeOfFuel'),
             'count' => $request->input('countOfFuel')
         ]);
+
+        $vehicle->fuel += $request->input('countOfFuel');
+        $vehicle->save();
 
         return redirect(url('/vehicles', [$id]));
     }
