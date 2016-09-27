@@ -38,7 +38,15 @@ class VehiclesController extends Controller
         if(!$vehicle->users->contains(Auth::User()))
             return redirect('/vehicles');
 
-        return view('vehicles.vehicle', ['vehicle' => $vehicle]);
+        $departures = VehicleDeparture::where('vehicle_id', $id)
+            ->where('date', '>=', Carbon::today()->subMonth())
+            ->where('date', '<=', Carbon::today())->get();
+
+        $refuelings = VehicleRefueling::where('vehicle_id', $id)
+            ->where('date', '>=', Carbon::today()->subMonth())
+            ->where('date', '<=', Carbon::today())->get();
+        
+        return view('vehicles.vehicle', ['vehicle' => $vehicle, 'departures' => $departures, 'refuelings' => $refuelings]);
     }
 
     public function addDeparture(Request $request, $id)

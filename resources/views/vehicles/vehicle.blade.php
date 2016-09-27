@@ -16,6 +16,31 @@
                 </div>
             </div>
             <div class="panel panel-default">
+                <div class="panel-heading">Wyjazdy(ostatni miesiąc)</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Powód</th>
+                                <th>Trasa</th>
+                                <th>Dowódca</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($departures as $departure)
+                                <tr>
+                                    <td>{{ $departure->date }}</td>
+                                    <td>{{ $departure->reason }}</td>
+                                    <td>{{ $departure->from }} - {{ $departure->to }}</td>
+                                    <td>{{ $departure->supervisor }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-default">
                 <div class="panel-heading">Generuj kartę pojazdu</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/vehicles', [$vehicle->id, 'departures', 'get']) }}">
